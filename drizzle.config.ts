@@ -12,11 +12,11 @@ export default defineConfig({
   dbCredentials: env.DATABASE_URL
     ? { url: env.DATABASE_URL }
     : {
-        host: env.DB_HOST ?? 'localhost',
-        port: Number(env.DB_PORT ?? 5432),
-        database: env.DB_NAME ?? '',
-        user: env.DB_USER,
-        password: env.DB_PASSWORD,
+        host: env.PGHOST ?? 'localhost',
+        port: Number(env.PGPORT ?? 5432),
+        database: env.PGDATABASE ?? '',
+        user: env.PGUSER,
+        password: env.PGPASSWORD,
         ssl: env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
       },
 });

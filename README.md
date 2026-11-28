@@ -26,7 +26,7 @@ The app listens on `PORT` from `.env` (default `3000`).
 ## Database and Redis
 
 Connection settings come from environment variables (see `.env.example`):
-`DATABASE_URL` or `DB_HOST`/`DB_PORT`/`DB_NAME`/`DB_USER`/`DB_PASSWORD`/`DB_SSL`, and
+`DATABASE_URL` or `PGHOST`/`PGPORT`/`PGDATABASE`/`PGUSER`/`PGPASSWORD` (the names Cloudways creates) plus optional `DB_SSL`, and
 `REDIS_HOST`/`REDIS_PORT`/`REDIS_USERNAME`/`REDIS_PASSWORD`/`REDIS_PREFIX`.
 
 Tables are defined in `src/database/schema.ts`. After changing them:

@@ -6,16 +6,16 @@ import type { PoolConfig } from 'pg';
 
 export type Database = NodePgDatabase;
 
-/** DATABASE_URL wins if set; otherwise the DB_* variables are used. */
+/** DATABASE_URL wins if set; otherwise the PG* variables (Cloudways sets these) are used. */
 export function databaseConnection(config: ConfigService): string | PoolConfig {
   const url = config.get<string>('DATABASE_URL');
   if (url) return url;
   return {
-    host: config.get<string>('DB_HOST', 'localhost'),
-    port: Number(config.get<string>('DB_PORT', '5432')),
-    database: config.get<string>('DB_NAME'),
-    user: config.get<string>('DB_USER'),
-    password: config.get<string>('DB_PASSWORD'),
+    host: config.get<string>('PGHOST', 'localhost'),
+    port: Number(config.get<string>('PGPORT', '5432')),
+    database: config.get<string>('PGDATABASE'),
+    user: config.get<string>('PGUSER'),
+    password: config.get<string>('PGPASSWORD'),
     ssl:
       config.get<string>('DB_SSL') === 'true'
         ? { rejectUnauthorized: false }
