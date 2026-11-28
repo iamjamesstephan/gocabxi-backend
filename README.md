@@ -32,15 +32,23 @@ Connection settings come from environment variables (see `.env.example`):
 Tables are defined in `src/database/schema.ts`. After changing them:
 
 ```bash
-npm run db:generate   # writes SQL migrations to ./drizzle (commit them)
-npm run db:migrate    # applies pending migrations to the database
-npm run db:studio     # optional: browse the database
+npm run db:generate -- --name=<what_changed>   # writes SQL to ./drizzle (read it, commit it)
+npm run db:migrate                             # applies pending migrations manually
+npm run db:studio                              # optional: browse the database
 ```
+
+On startup the app applies pending migrations and seeds the system roles
+(`src/roles/system-roles.ts`), then starts serving. If that fails it exits rather
+than run on an out-of-date schema. Set `DB_MIGRATE_ON_START=false` to skip this,
+for example when no local database is running.
+
+Current tables: `roles` (10 system roles from the SRS; vendors can later add custom roles).
+`GET /api/v1/roles` lists them. It is public only until authentication is added.
 
 ## Tests
 
 ```bash
-npm run test       # unit tests
+npm run test       # unit tests (roles tests run the real migrations on in-process PostgreSQL via PGlite)
 npm run test:e2e   # end-to-end tests
 ```
 

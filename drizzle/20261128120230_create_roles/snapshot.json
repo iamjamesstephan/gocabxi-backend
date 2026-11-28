@@ -1,0 +1,282 @@
+{
+  "type": "base",
+  "version": "10",
+  "dialect": "postgres",
+  "id": "a203a088-2c39-401a-9d9c-e1492ba9a526",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "role_scope"
+      ],
+      "writes": [
+        "s|enum|public.role_scope",
+        "n|enum|public.role_scope",
+        "e|enum|public.role_scope",
+        "n|type|public.role_scope"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "roles"
+      ],
+      "writes": [
+        "s|tbl|public.roles",
+        "n|tbl|public.roles",
+        "e|tbl|public.roles",
+        "n|rel|public.roles",
+        "n|type|public.roles",
+        "n|rel|public.roles_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.role_scope"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "roles",
+        "roles_key_system_unique"
+      ],
+      "writes": [
+        "s|idx|public.roles_key_system_unique",
+        "n|idx|public.roles_key_system_unique",
+        "e|idx|public.roles_key_system_unique",
+        "n|rel|public.roles_key_system_unique"
+      ],
+      "reads": [
+        "n|tbl|public.roles",
+        "n|sch|public",
+        "n|col|public.roles.key"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "roles",
+        "roles_vendor_key_unique"
+      ],
+      "writes": [
+        "s|idx|public.roles_vendor_key_unique",
+        "n|idx|public.roles_vendor_key_unique",
+        "e|idx|public.roles_vendor_key_unique",
+        "n|rel|public.roles_vendor_key_unique"
+      ],
+      "reads": [
+        "n|tbl|public.roles",
+        "n|sch|public",
+        "n|col|public.roles.vendor_id",
+        "n|col|public.roles.key"
+      ]
+    }
+  ],
+  "ddl": [
+    {
+      "schema": "public",
+      "name": "roles",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "role_scope",
+      "values": [
+        "platform",
+        "vendor",
+        "driver",
+        "customer"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "key",
+      "type": "varchar(64)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "name",
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "description",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "scope",
+      "type": "role_scope",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "vendor_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "is_system",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "roles_key_system_unique",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "key",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"vendor_id\" is null",
+      "with": "",
+      "method": "btree",
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "roles_vendor_key_unique",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "vendor_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "key",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"vendor_id\" is not null",
+      "with": "",
+      "method": "btree",
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "roles",
+      "name": "roles_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    }
+  ]
+}
