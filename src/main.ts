@@ -6,6 +6,7 @@ import { setupApp } from './setup-app.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableShutdownHooks();
   setupApp(app);
 
   const swaggerConfig = new DocumentBuilder()
